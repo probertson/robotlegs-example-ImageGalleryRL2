@@ -1,14 +1,13 @@
 package gallery.view
 {
     import flash.events.Event;
-
+    
     import gallery.model.SelectedImageModel;
-
     import gallery.model.events.GalleryImagesUpdatedEvent;
     import gallery.model.events.SelectedImageUpdatedEvent;
     import gallery.view.events.ImageSelectedEvent;
-
-    import org.robotlegs.mvcs.Mediator;
+    
+    import robotlegs.bender.bundles.mvcs.impl.Mediator;
 
     public class ImageListViewMediator extends Mediator
     {
@@ -18,12 +17,12 @@ package gallery.view
         [Inject]
         public var model:SelectedImageModel;
 
-        override public function onRegister():void
+        override public function initialize():void
         {
-            addContextListener(GalleryImagesUpdatedEvent.UPDATED, handleImageServiceResults);
-            addContextListener(SelectedImageUpdatedEvent.UPDATED, handleSelectedImageUpdated);
+            addContextListener(GalleryImagesUpdatedEvent.UPDATED, handleImageServiceResults, GalleryImagesUpdatedEvent);
+            addContextListener(SelectedImageUpdatedEvent.UPDATED, handleSelectedImageUpdated, SelectedImageUpdatedEvent);
 
-            addViewListener(ImageSelectedEvent.IMAGE_SELECTED, dispatch);
+            addViewListener(ImageSelectedEvent.IMAGE_SELECTED, dispatch, ImageSelectedEvent);
         }
 
         private function handleImageServiceResults(event:GalleryImagesUpdatedEvent):void

@@ -24,7 +24,6 @@ package gallery
 	import gallery.view.events.ImageSelectedEvent;
 	import gallery.view.events.SearchForTermEvent;
 	
-	import org.robotlegs.core.IMediatorMap;
 	import org.swiftsuspenders.Injector;
 	
 	import robotlegs.bender.extensions.eventCommandMap.api.IEventCommandMap;
@@ -36,10 +35,7 @@ package gallery
 		public var injector:Injector;
 		
 		[Inject]
-		public var rl1MediatorMap:org.robotlegs.core.IMediatorMap;
-		
-		[Inject]
-		public var mediatorMap:robotlegs.bender.extensions.mediatorMap.api.IMediatorMap;
+		public var mediatorMap:IMediatorMap;
 		
 		[Inject]
 		public var commandMap:IEventCommandMap;
@@ -57,11 +53,10 @@ package gallery
 			injector.map(CurrentSearchTermModel).asSingleton();
 			
 			mediatorMap.mapView(ThumbnailList).toMediator(ThumbnailListMediator);
-//			rl1MediatorMap.mapView(ThumbnailList, ThumbnailListMediator);
-			rl1MediatorMap.mapView(GalleryImageView, GalleryImageViewMediator);
-			rl1MediatorMap.mapView(GallerySearchView, GallerySearchViewMediator);
-			rl1MediatorMap.mapView(GalleryHeader, GalleryHeaderMediator);
-			rl1MediatorMap.mapView(ImageListView, ImageListViewMediator);
+			mediatorMap.mapView(GalleryImageView).toMediator(GalleryImageViewMediator);
+			mediatorMap.mapView(GallerySearchView).toMediator(GallerySearchViewMediator);
+			mediatorMap.mapView(GalleryHeader).toMediator(GalleryHeaderMediator);
+			mediatorMap.mapView(ImageListView).toMediator(ImageListViewMediator);
 			
 			commandMap.map(GetImagesEvent.GET_IMAGES, GetImagesEvent).toCommand(GetImagesCommand);
 			commandMap.map(ImageSelectedEvent.IMAGE_SELECTED, ImageSelectedEvent).toCommand(UpdateSelectedImageCommand);

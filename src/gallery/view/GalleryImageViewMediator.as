@@ -3,8 +3,8 @@ package gallery.view
     import gallery.model.SelectedImageModel;
     import gallery.model.events.SelectedImageUpdatedEvent;
     import gallery.model.vo.GalleryImage;
-
-    import org.robotlegs.mvcs.Mediator;
+    
+    import robotlegs.bender.bundles.mvcs.impl.Mediator;
 
     public class GalleryImageViewMediator extends Mediator
     {
@@ -14,9 +14,9 @@ package gallery.view
         [Inject]
         public var selectedImageModel:SelectedImageModel;
 
-        override public function onRegister():void
+        override public function initialize():void
         {
-            addContextListener(SelectedImageUpdatedEvent.UPDATED, handleSelectedImageUpdated);
+            addContextListener(SelectedImageUpdatedEvent.UPDATED, handleSelectedImageUpdated, SelectedImageUpdatedEvent);
         }
 
         private function handleSelectedImageUpdated(event:SelectedImageUpdatedEvent):void

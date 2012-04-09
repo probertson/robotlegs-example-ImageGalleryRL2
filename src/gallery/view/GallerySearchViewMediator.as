@@ -1,17 +1,17 @@
 package gallery.view
 {
     import gallery.view.events.SearchForTermEvent;
-
-    import org.robotlegs.mvcs.Mediator;
+    
+    import robotlegs.bender.bundles.mvcs.impl.Mediator;
 
     public class GallerySearchViewMediator extends Mediator
     {
         [Inject]
         public var view:GallerySearchView;
 
-        override public function onRegister():void
+        override public function initialize():void
         {
-            addViewListener(SearchForTermEvent.SEARCH, dispatch);
+            addViewListener(SearchForTermEvent.SEARCH, dispatch, SearchForTermEvent);
         }
     }
 }

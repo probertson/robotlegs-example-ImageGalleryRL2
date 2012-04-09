@@ -1,12 +1,11 @@
 package gallery.view
 {
     import flash.events.Event;
-
+    
     import gallery.model.CurrentSearchTermModel;
-
     import gallery.model.events.CurrentSearchTermUpdatedEvent;
-
-    import org.robotlegs.mvcs.Mediator;
+    
+    import robotlegs.bender.bundles.mvcs.impl.Mediator;
 
     public class GalleryHeaderMediator extends Mediator
     {
@@ -16,9 +15,9 @@ package gallery.view
         [Inject]
         public var currentTermModel:CurrentSearchTermModel;
 
-        override public function onRegister():void
+        override public function initialize():void
         {
-            addContextListener(CurrentSearchTermUpdatedEvent.UPDATED, handleSearchTermUpdated)
+            addContextListener(CurrentSearchTermUpdatedEvent.UPDATED, handleSearchTermUpdated, CurrentSearchTermUpdatedEvent)
         }
 
         private function handleSearchTermUpdated(event:Event):void
