@@ -28,11 +28,15 @@ package gallery
 	import org.robotlegs.core.IInjector;
 	import org.robotlegs.core.IMediatorMap;
 	import org.robotlegs.mvcs.Context;
+	import org.swiftsuspenders.Injector;
 	
 	public class ImageGalleryConfig
 	{
 		[Inject]
-		public var injector:IInjector;
+		public var rl1Injector:IInjector;
+		
+		[Inject]
+		public var injector:Injector;
 		
 		[Inject]
 		public var mediatorMap:IMediatorMap;
@@ -46,11 +50,12 @@ package gallery
 		[PostConstruct]
 		public function startup():void
 		{
-			injector.mapSingletonOf(IImageService, FlickrImageService);
+//			rl1Injector.mapSingletonOf(IImageService, FlickrImageService);
+			injector.map(IImageService).toSingleton(FlickrImageService);
 			
-			injector.mapSingleton(GalleryImageListModel);
-			injector.mapSingleton(SelectedImageModel);
-			injector.mapSingleton(CurrentSearchTermModel);
+			rl1Injector.mapSingleton(GalleryImageListModel);
+			rl1Injector.mapSingleton(SelectedImageModel);
+			rl1Injector.mapSingleton(CurrentSearchTermModel);
 			
 			mediatorMap.mapView(ThumbnailList, ThumbnailListMediator);
 			mediatorMap.mapView(GalleryImageView, GalleryImageViewMediator);
