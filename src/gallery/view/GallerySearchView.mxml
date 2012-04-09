@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<s:HGroup
+        xmlns:fx="http://ns.adobe.com/mxml/2009"
+        xmlns:s="library://ns.adobe.com/flex/spark"
+        width="100%"
+        verticalAlign="middle"
+        horizontalAlign="right">
+    <fx:Script><![CDATA[
+        import gallery.view.events.SearchForTermEvent;
+
+        private function handleSearchForInputText():void
+        {
+            if( !(input.text && input.text.length > 0))
+                return;
+
+            dispatchEvent(new SearchForTermEvent(input.text));
+            input.text = "";
+
+        }
+        ]]>
+    </fx:Script>
+    <s:TextInput id="input" width="120" prompt="search" textAlign="right" enter="handleSearchForInputText()"/>
+    <s:Button label="Search" enabled="{Boolean(input.text.length)}" click="handleSearchForInputText()"/>
+</s:HGroup>
