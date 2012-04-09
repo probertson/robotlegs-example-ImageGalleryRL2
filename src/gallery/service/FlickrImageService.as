@@ -5,16 +5,13 @@ package gallery.service
     import com.adobe.webapis.flickr.events.FlickrResultEvent;
     import com.adobe.webapis.flickr.methodgroups.Photos;
     import com.adobe.webapis.flickr.methodgroups.helpers.PhotoSearchParams;
-
+    
     import gallery.model.GalleryImageListModel;
-
     import gallery.model.vo.GalleryImage;
-
+    
     import mx.collections.ArrayCollection;
 
-    import org.robotlegs.mvcs.Actor;
-
-    public class FlickrImageService extends Actor implements IImageService
+    public class FlickrImageService implements IImageService
     {
         [Inject]
         public var imageListModel:GalleryImageListModel;
