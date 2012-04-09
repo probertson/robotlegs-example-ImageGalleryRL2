@@ -24,9 +24,10 @@ package gallery
 	import gallery.view.events.ImageSelectedEvent;
 	import gallery.view.events.SearchForTermEvent;
 	
-	import org.robotlegs.core.ICommandMap;
 	import org.robotlegs.core.IMediatorMap;
 	import org.swiftsuspenders.Injector;
+	
+	import robotlegs.bender.extensions.eventCommandMap.api.IEventCommandMap;
 	
 	public class ImageGalleryConfig
 	{
@@ -37,7 +38,7 @@ package gallery
 		public var mediatorMap:IMediatorMap;
 		
 		[Inject]
-		public var commandMap:ICommandMap;
+		public var commandMap:IEventCommandMap;
 		
 		[Inject]
 		public var eventDispatcher:IEventDispatcher;
@@ -57,9 +58,9 @@ package gallery
 			mediatorMap.mapView(GalleryHeader, GalleryHeaderMediator);
 			mediatorMap.mapView(ImageListView, ImageListViewMediator);
 			
-			commandMap.mapEvent(GetImagesEvent.GET_IMAGES, GetImagesCommand);
-			commandMap.mapEvent(ImageSelectedEvent.IMAGE_SELECTED, UpdateSelectedImageCommand);
-			commandMap.mapEvent(SearchForTermEvent.SEARCH, SearchForTermCommand);
+			commandMap.map(GetImagesEvent.GET_IMAGES, GetImagesEvent).toCommand(GetImagesCommand);
+			commandMap.map(ImageSelectedEvent.IMAGE_SELECTED, ImageSelectedEvent).toCommand(UpdateSelectedImageCommand);
+			commandMap.map(SearchForTermEvent.SEARCH, SearchForTermEvent).toCommand(SearchForTermCommand);
 			
 			eventDispatcher.dispatchEvent(new GetImagesEvent());
 		}
