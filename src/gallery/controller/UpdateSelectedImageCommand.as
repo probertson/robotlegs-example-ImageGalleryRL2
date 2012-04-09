@@ -3,9 +3,7 @@ package gallery.controller
     import gallery.model.SelectedImageModel;
     import gallery.view.events.ImageSelectedEvent;
 
-    import org.robotlegs.mvcs.Command
-
-    public class UpdateSelectedImageCommand extends Command
+    public class UpdateSelectedImageCommand
     {
         [Inject]
         public var event:ImageSelectedEvent;
@@ -13,7 +11,7 @@ package gallery.controller
         [Inject]
         public var selectedImageModel:SelectedImageModel;
 
-        override public function execute():void
+        public function execute():void
         {
             selectedImageModel.selectedImage = event.image;
         }

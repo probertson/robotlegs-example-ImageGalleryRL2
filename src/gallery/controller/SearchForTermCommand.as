@@ -4,9 +4,7 @@ package gallery.controller
     import gallery.service.IImageService;
     import gallery.view.events.SearchForTermEvent;
 
-    import org.robotlegs.mvcs.Command
-
-    public class SearchForTermCommand extends Command
+    public class SearchForTermCommand
     {
         [Inject]
         public var event:SearchForTermEvent;
@@ -17,7 +15,7 @@ package gallery.controller
         [Inject]
         public var model:CurrentSearchTermModel;
 
-        override public function execute():void
+        public function execute():void
         {
             var searchTerm:String = event.term;
 
