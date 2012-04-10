@@ -4,7 +4,6 @@
 	xmlns:s="library://ns.adobe.com/flex/spark"
 	xmlns:rl2="robotlegs.bender.mxml.*"
 	xmlns:mvcs="robotlegs.bender.bundles.mvcs.*"
-	xmlns:migration="robotlegs.bender.extensions.migration.*"
 	xmlns:view="gallery.view.*"
 	xmlns:gallery="gallery.*"
 	showStatusBar="false">
@@ -12,7 +11,6 @@
 	<fx:Declarations>
 		<rl2:ContextBuilderTag>
 			<mvcs:MVCSBundle/>
-			<migration:MigrationExtension/>
 			<gallery:ImageGalleryConfig/>
 		</rl2:ContextBuilderTag>
 	</fx:Declarations>
