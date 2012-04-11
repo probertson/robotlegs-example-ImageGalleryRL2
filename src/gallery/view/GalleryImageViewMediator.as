@@ -4,7 +4,7 @@ package gallery.view
     import gallery.model.events.SelectedImageUpdatedEvent;
     import gallery.model.vo.GalleryImage;
     
-    import robotlegs.bender.bundles.mvcs.impl.Mediator;
+    import robotlegs.bender.bundles.mvcs.Mediator;
 
     public class GalleryImageViewMediator extends Mediator
     {

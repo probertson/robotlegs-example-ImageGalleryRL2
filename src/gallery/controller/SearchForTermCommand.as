@@ -3,8 +3,10 @@ package gallery.controller
     import gallery.model.CurrentSearchTermModel;
     import gallery.service.IImageService;
     import gallery.view.events.SearchForTermEvent;
+    
+    import robotlegs.bender.bundles.mvcs.Command;
 
-    public class SearchForTermCommand
+    public class SearchForTermCommand extends Command
     {
         [Inject]
         public var event:SearchForTermEvent;
@@ -15,7 +17,7 @@ package gallery.controller
         [Inject]
         public var model:CurrentSearchTermModel;
 
-        public function execute():void
+        override public function execute():void
         {
             var searchTerm:String = event.term;
 

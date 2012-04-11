@@ -5,7 +5,7 @@ package gallery.view
     import gallery.model.CurrentSearchTermModel;
     import gallery.model.events.CurrentSearchTermUpdatedEvent;
     
-    import robotlegs.bender.bundles.mvcs.impl.Mediator;
+    import robotlegs.bender.bundles.mvcs.Mediator;
 
     public class GalleryHeaderMediator extends Mediator
     {

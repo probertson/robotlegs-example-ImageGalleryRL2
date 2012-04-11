@@ -2,7 +2,7 @@ package gallery.view
 {
     import gallery.view.events.SearchForTermEvent;
     
-    import robotlegs.bender.bundles.mvcs.impl.Mediator;
+    import robotlegs.bender.bundles.mvcs.Mediator;
 
     public class GallerySearchViewMediator extends Mediator
     {

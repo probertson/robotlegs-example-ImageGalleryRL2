@@ -7,7 +7,7 @@ package gallery.view
 	import gallery.model.events.SelectedImageUpdatedEvent;
 	import gallery.view.events.ImageSelectedEvent;
 	
-	import robotlegs.bender.bundles.mvcs.impl.Mediator;
+	import robotlegs.bender.bundles.mvcs.Mediator;
 	
 	public class ThumbnailListMediator extends Mediator
 	{

@@ -2,8 +2,10 @@ package gallery.controller
 {
     import gallery.model.SelectedImageModel;
     import gallery.view.events.ImageSelectedEvent;
+    
+    import robotlegs.bender.bundles.mvcs.Command;
 
-    public class UpdateSelectedImageCommand
+    public class UpdateSelectedImageCommand extends Command
     {
         [Inject]
         public var event:ImageSelectedEvent;
@@ -11,7 +13,7 @@ package gallery.controller
         [Inject]
         public var selectedImageModel:SelectedImageModel;
 
-        public function execute():void
+        override public function execute():void
         {
             selectedImageModel.selectedImage = event.image;
         }
