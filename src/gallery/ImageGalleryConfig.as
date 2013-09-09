@@ -24,15 +24,18 @@ package gallery
 	import gallery.view.events.ImageSelectedEvent;
 	import gallery.view.events.SearchForTermEvent;
 	
-	import org.swiftsuspenders.Injector;
-	
 	import robotlegs.bender.extensions.eventCommandMap.api.IEventCommandMap;
 	import robotlegs.bender.extensions.mediatorMap.api.IMediatorMap;
+	import robotlegs.bender.framework.api.IConfig;
+	import robotlegs.bender.framework.api.IInjector;
 	
-	public class ImageGalleryConfig
+	//public class ImageGalleryConfig
+	public class ImageGalleryConfig implements IConfig
 	{
+		/*[Inject]
+		public var injector:Injector;*/
 		[Inject]
-		public var injector:Injector;
+		public var injector:IInjector;
 		
 		[Inject]
 		public var mediatorMap:IMediatorMap;
@@ -43,7 +46,7 @@ package gallery
 		[Inject]
 		public var eventDispatcher:IEventDispatcher;
 		
-		[PostConstruct]
+		/*[PostConstruct]
 		public function startup():void
 		{
 			injector.map(IImageService).toSingleton(FlickrImageService);
@@ -57,6 +60,27 @@ package gallery
 			mediatorMap.mapView(GallerySearchView).toMediator(GallerySearchViewMediator);
 			mediatorMap.mapView(GalleryHeader).toMediator(GalleryHeaderMediator);
 			mediatorMap.mapView(ImageListView).toMediator(ImageListViewMediator);
+			
+			commandMap.map(GetImagesEvent.GET_IMAGES, GetImagesEvent).toCommand(GetImagesCommand);
+			commandMap.map(ImageSelectedEvent.IMAGE_SELECTED, ImageSelectedEvent).toCommand(UpdateSelectedImageCommand);
+			commandMap.map(SearchForTermEvent.SEARCH, SearchForTermEvent).toCommand(SearchForTermCommand);
+			
+			eventDispatcher.dispatchEvent(new GetImagesEvent());
+		}*/
+		
+		public function configure():void
+		{
+			injector.map(IImageService).toSingleton(FlickrImageService);
+			
+			injector.map(GalleryImageListModel).asSingleton();
+			injector.map(SelectedImageModel).asSingleton();
+			injector.map(CurrentSearchTermModel).asSingleton();
+			
+			mediatorMap.map(ThumbnailList).toMediator(ThumbnailListMediator);
+			mediatorMap.map(GalleryImageView).toMediator(GalleryImageViewMediator);
+			mediatorMap.map(GallerySearchView).toMediator(GallerySearchViewMediator);
+			mediatorMap.map(GalleryHeader).toMediator(GalleryHeaderMediator);
+			mediatorMap.map(ImageListView).toMediator(ImageListViewMediator);
 			
 			commandMap.map(GetImagesEvent.GET_IMAGES, GetImagesEvent).toCommand(GetImagesCommand);
 			commandMap.map(ImageSelectedEvent.IMAGE_SELECTED, ImageSelectedEvent).toCommand(UpdateSelectedImageCommand);
